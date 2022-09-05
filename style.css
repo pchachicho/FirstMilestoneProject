@@ -1,0 +1,10 @@
+#game {
+  box-shadow: 7px 7px 14px black;
+}
+h1 {
+    text-align: center;
+}
+body {
+  display: flex;
+  justify-content: center;
+}
