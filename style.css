@@ -4,7 +4,10 @@
 h1 {
     text-align: center;
 }
+/** turns the body into a flex box so the canvas always stays centered inside the screen */
 body {
   display: flex;
   justify-content: center;
+  /** overflow prevents scrollbars from showing up */
+  overflow: hidden;
 }
