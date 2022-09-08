@@ -1,4 +1,4 @@
-// t
+import Pacman from "./Pacman.js";
 export default class TileMap {
   constructor(tileSize) {
     this.tileSize = tileSize;
@@ -10,10 +10,12 @@ export default class TileMap {
     this.wall.src = "./images/wall.png";
   }
 
-  // Bricks = 1 Yellow dot = 0
+  // Bricks = 1
+  //Yellow dot = 0
+  //Pacman starting position = 4
   map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1],
     [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
@@ -42,13 +44,13 @@ export default class TileMap {
           this.#drawYellowDot(ctx, column, row, this.tileSize);
         }
         //yellow outlines for image pixels
-        ctx.strokeStyle = "yellow";
-        ctx.strokeRect(
-          column * this.tileSize,
-          row * this.tileSize,
-          this.tileSize,
-          this.tileSize
-        );
+        //ctx.strokeStyle = "yellow";
+        //ctx.strokeRect(
+        //column * this.tileSize,
+        //row * this.tileSize,
+        //this.tileSize,
+        //this.tileSize
+        //);
       }
     }
   }
@@ -71,6 +73,23 @@ export default class TileMap {
       size,
       size
     );
+  }
+  getPacman(velocity) {
+    for (let row = 0; row < this.map.length; row++) {
+      for (let column = 0; column < this.map[row].length; column++) {
+        let tile = this.map[row][column];
+        if (tile === 4) {
+          this.map[row][column] = 0;
+          return new Pacman(
+            column * this.tileSize,
+            row * this.tileSize,
+            this.tileSize,
+            velocity,
+            this
+          );
+        }
+      }
+    }
   }
   setCanvasSize(canvas) {
     canvas.width = this.map[0].length * this.tileSize; //Takes first array length and multiplies it by each tile (32pixels)
