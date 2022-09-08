@@ -8,20 +8,37 @@ export default class Pacman {
     this.tileMap = tileMap;
     this.#loadPacmanImages();
   }
-  draw(ctx) {}
-  #loadPacmanImages(){
-    // const pacmanImage1 = new Image();
-    // pacmanImage1.src = "./images/pac0.png"
+  draw(ctx) {
+    ctx.drawImage(
+      this.pacmanImages[this.pacmanImageIndex],
+      this.x,
+      this.y,
+      this.tileSize,
+      this.tileSize
+    );
+  }
 
-    // const pacmanImage1 = new Image();
-    // pacmanImage1.src = "./images/pac0.png"
+  #loadPacmanImages() {
+    //Pacman images for animation
+    const pacmanImage1 = new Image();
+    pacmanImage1.src = "./images/pac0.png";
 
-    // const pacmanImage1 = new Image();
-    // pacmanImage1.src = "./images/pac0.png"
+    const pacmanImage2 = new Image();
+    pacmanImage2.src = "./images/pac1.png";
 
-    // const pacmanImage1 = new Image();
-    // pacmanImage1.src = "./images/pac0.png"
-}
+    const pacmanImage3 = new Image();
+    pacmanImage3.src = "./images/pac2.png";
 
+    const pacmanImage4 = new Image();
+    pacmanImage4.src = "./images/pac0.png";
 
+    this.pacmanImages = [
+      pacmanImage1,
+      pacmanImage2,
+      pacmanImage3,
+      pacmanImage4,
+    ];
+
+    this.pacmanImageIndex = 0; //First image pacman starts as (fully closed)
+  }
 }
