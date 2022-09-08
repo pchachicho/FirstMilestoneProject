@@ -1,4 +1,4 @@
-// t
+// Sends moving directions to Pacman.js
 const MovingDirection = {
   up: 0,
   down: 1,

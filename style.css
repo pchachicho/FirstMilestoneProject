@@ -1,5 +1,7 @@
 #game {
-  box-shadow: 7px 7px 14px black;
+  box-shadow: 10px 10px 14px black;
+  width: 700px;
+  height: 600px;
 }
 h1 {
   text-align: center;
