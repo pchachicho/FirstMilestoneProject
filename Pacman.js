@@ -74,14 +74,32 @@ export default class Pacman {
       this.requestedMovingDirection = MovingDirection.right;
     }
   };
+  // this function basically does not allow you to switch in between decimal points and only when your exactly on the 32bit image
   #move() {
     if (this.currentMovingDirection !== this.requestedMovingDirection) {
       if (
         Number.isInteger(this.x / this.tileSize) &&
         Number.isInteger(this.y / this.tileSize)
       ) {
-        this.currentMovingDirection = this.requestedMovingDirection;
+        // ! askes the code a question if we collided or not
+        if (
+          !this.tileMap.didCollideWithEnvironrment(
+            this.x,
+            this.y,
+            this.requestedMovingDirection
+          )
+        )
+          this.currentMovingDirection = this.requestedMovingDirection;
       }
+    }
+    if (
+      this.tileMap.didCollideWithEnvironrment(
+        this.x,
+        this.y,
+        this.currentMovingDirection
+      )
+    ) {
+      return;
     }
     // Depending on your direction "switch" will change pacmans x or y value
     switch (this.currentMovingDirection) {
