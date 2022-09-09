@@ -18,10 +18,11 @@ export default class Pacman {
     document.addEventListener("keydown", this.#keydown);
     this.#loadPacmanImages();
   }
-  //Draws the movement of images of pacman
+  //Draws the movement of images of pacman and animates them
   draw(ctx) {
     this.#move();
     this.#animate();
+    this.#eatDot();
     // What this code does is basically rotates the whole entire map which ends up in a glitch in the map. at the end "ctx.restore()" restores the canvas back
     // to normal but leaves pacman rotating everytime a key is pressed which ends up with the animation being complete.
     const size = this.tileSize / 2;
@@ -164,6 +165,10 @@ export default class Pacman {
       this.pacmanImageIndex++;
       if (this.pacmanImageIndex == this.pacmanImages.length)
         this.pacmanImageIndex = 0;
+    }
+  }
+  #eatDot() {
+    if (this.tileMap.eatDot(this.x, this.y)) {
     }
   }
 }

@@ -1,6 +1,7 @@
 import Pacman from "./Pacman.js";
 import MovingDirection from "./MovingDirection.js";
-export default class TileMap { //exports the map to Game.js
+export default class TileMap {
+  //exports the map to Game.js
   constructor(tileSize) {
     this.tileSize = tileSize;
 
@@ -14,6 +15,7 @@ export default class TileMap { //exports the map to Game.js
   // Bricks = 1
   //Yellow dot = 0
   //Pacman starting position = 4
+  // empty space = 5
   map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -43,6 +45,8 @@ export default class TileMap { //exports the map to Game.js
           this.#drawWall(ctx, column, row, this.tileSize); //if tile is = 1 it becomes a brick!
         } else if (tile === 0) {
           this.#drawYellowDot(ctx, column, row, this.tileSize); //if tile is = 0 then it turns into a yellow dot
+        } else {
+          this.#drawBlank(ctx, column, row, this.tileSize);
         }
         //yellow outlines for image pixels
         // ctx.strokeStyle = "yellow";
@@ -74,6 +78,11 @@ export default class TileMap { //exports the map to Game.js
       size,
       size
     );
+  }
+  // instead of removing the yellow dots when they are eaten. This function actually replaces them with a black rectangle
+  #drawBlank(ctx, column, row, size) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(column * this.tileSize, row * this.tileSize, size, size);
   }
   getPacman(velocity) {
     for (let row = 0; row < this.map.length; row++) {
@@ -135,5 +144,15 @@ export default class TileMap { //exports the map to Game.js
       }
     } // return false if we did not collide
     return false;
+  }
+  eatDot(x, y) {
+    const row = y / this.tileSize;
+    const column = x / this.tileSize;
+    //makes sure theres no decimals
+    if (Number.isInteger(row) && Number.isInteger(column)) {
+      if (this.map[row][column] === 0) {
+        this.map[row][column] = 5; // 5 is no space
+      }
+    }
   }
 }
