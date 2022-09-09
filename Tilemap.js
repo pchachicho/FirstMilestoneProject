@@ -1,6 +1,6 @@
 import Pacman from "./Pacman.js";
 import MovingDirection from "./MovingDirection.js";
-export default class TileMap {
+export default class TileMap { //exports the map to Game.js
   constructor(tileSize) {
     this.tileSize = tileSize;
 
@@ -40,9 +40,9 @@ export default class TileMap {
         let tile = this.map[row][column];
         if (tile === 1) {
           // # makes it a private method
-          this.#drawWall(ctx, column, row, this.tileSize);
+          this.#drawWall(ctx, column, row, this.tileSize); //if tile is = 1 it becomes a brick!
         } else if (tile === 0) {
-          this.#drawYellowDot(ctx, column, row, this.tileSize);
+          this.#drawYellowDot(ctx, column, row, this.tileSize); //if tile is = 0 then it turns into a yellow dot
         }
         //yellow outlines for image pixels
         // ctx.strokeStyle = "yellow";

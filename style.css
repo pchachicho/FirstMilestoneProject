@@ -1,6 +1,6 @@
 #game {
   box-shadow: 10px 10px 14px black;
-
+  
 }
 h1 {
   text-align: center;
@@ -11,4 +11,13 @@ body {
   justify-content: center;
   /** overflow prevents scrollbars from showing up */
   overflow: hidden;
+
 }
+/* .background {
+  background-image: url(./images/Atari.png.f58722480f4b3bb2bc1d0e2547a6d292.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  
+  height: 100vh;
+} */

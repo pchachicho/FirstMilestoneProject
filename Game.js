@@ -2,16 +2,15 @@ import TileMap from "./Tilemap.js";
 
 const tileSize = 32;
 const velocity = 2;
-// Creates canvas and links it to the ID on html "game"
-const canvas = document.getElementById("game");
-// References the context in 2d
-const ctx = canvas.getContext("2d");
+
+const canvas = document.getElementById("game"); // Creates canvas and links it to the ID on html "game"
+const ctx = canvas.getContext("2d");// References the context in 2d
 const tileMap = new TileMap(tileSize);
-//creates pacman
-const pacman = tileMap.getPacman(velocity)
+
+const pacman = tileMap.getPacman(velocity) //creates pacman
 function gameLoop() { // Game loop draws the screen multiple times depending on what i put
-  tileMap.draw(ctx);
-  pacman.draw(ctx);
+  tileMap.draw(ctx); // Draws the map
+  pacman.draw(ctx); // Draws Pacman
 }
 
 tileMap.setCanvasSize(canvas);
