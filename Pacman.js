@@ -13,6 +13,8 @@ export default class Pacman {
     this.pacmanAnimationTimerDefault = 10;
     this.pacmanAnimationTimer = null;
 
+    this.pacmanRotation = this.Rotation.right;
+
     document.addEventListener("keydown", this.#keydown);
     this.#loadPacmanImages();
   }
@@ -20,15 +22,35 @@ export default class Pacman {
   draw(ctx) {
     this.#move();
     this.#animate();
+    // What this code does is basically rotates the whole entire map which ends up in a glitch in the map. at the end "ctx.restore()" restores the canvas back
+    // to normal but leaves pacman rotating everytime a key is pressed which ends up with the animation being complete.
+    const size = this.tileSize / 2;
+    ctx.save();
+    ctx.translate(this.x + size, this.y + size);
+    ctx.rotate((this.pacmanRotation * 90 * Math.PI) / 180);
     ctx.drawImage(
       this.pacmanImages[this.pacmanImageIndex],
-      this.x,
-      this.y,
+      -size,
+      -size,
       this.tileSize,
       this.tileSize
     );
+    ctx.restore();
+    // ctx.drawImage(
+    //   this.pacmanImages[this.pacmanImageIndex],
+    //   this.x,
+    //   this.y,
+    //   this.tileSize,
+    //   this.tileSize
+    // );
   }
 
+  Rotation = {
+    right: 0,
+    down: 1,
+    left: 2,
+    up: 3,
+  };
   #loadPacmanImages() {
     //Pacman images for animation
     const pacmanImage1 = new Image();
@@ -108,24 +130,28 @@ export default class Pacman {
     } else if (
       this.currentMovingDirection != null &&
       this.pacmanAnimationTimer == null
-    ){
+    ) {
       this.pacmanAnimationTimer = this.pacmanAnimationTimerDefault;
     }
-      // Depending on your direction "switch" will change pacmans x or y value
-      switch (this.currentMovingDirection) {
-        case MovingDirection.up:
-          this.y -= this.velocity;
-          break;
-        case MovingDirection.down:
-          this.y += this.velocity;
-          break;
-        case MovingDirection.right:
-          this.x += this.velocity;
-          break;
-        case MovingDirection.left:
-          this.x -= this.velocity;
-          break;
-      }
+    // Depending on your direction "switch" will change pacmans x or y value
+    switch (this.currentMovingDirection) {
+      case MovingDirection.up:
+        this.y -= this.velocity;
+        this.pacmanRotation = this.Rotation.up;
+        break;
+      case MovingDirection.down:
+        this.y += this.velocity;
+        this.pacmanRotation = this.Rotation.down;
+        break;
+      case MovingDirection.right:
+        this.x += this.velocity;
+        this.pacmanRotation = this.Rotation.right;
+        break;
+      case MovingDirection.left:
+        this.x -= this.velocity;
+        this.pacmanRotation = this.Rotation.left;
+        break;
+    }
   }
   #animate() {
     if (this.pacmanAnimationTimer == null) {
