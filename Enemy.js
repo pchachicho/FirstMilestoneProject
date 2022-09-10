@@ -12,16 +12,46 @@ export default class Enemy {
       Math.random() * Object.keys(MovingDirection).length
     ); //random moving direction
 
-    this.directionTimerDefault = this.#random(10, 50);
+    this.directionTimerDefault = this.#random(1, 3);
     this.directionTimer = this.directionTimerDefault;
-    
   }
   draw(ctx) {
     //draws the enemys
     this.#move();
+    this.#changeDirection();
     ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize);
   }
+  #changeDirection() {
+    this.directionTimer--;
+    let newMoveDirection = null;
+    if (this.directionTimer == 0) {
+      // If timer is 0 it resets the timer back to default
+      this.directionTimer = this.directionTimerDefault;
+      newMoveDirection = Math.floor(
+        Math.random() * Object.keys(MovingDirection).length
+      );
+    }
+    if (newMoveDirection != null && this.movingDirection != newMoveDirection) {
+      if ( 
+        //same code as pacman. checking if numbers are not decimals
+        Number.isInteger(this.x / this.tileSize) &&
+        Number.isInteger(this.y / this.tileSize)
+      ) {
+        if (
+          !this.tileMap.didCollideWithEnvironment(
+            this.x,
+            this.y,
+            newMoveDirection
+          )
+        ) {
+          this.movingDirection = newMoveDirection;
+        }
+      }
+    } //prevents enemys from constantly hitting wall
+  }
+
   #move() {
+    // movement if they collided
     if (
       !this.tileMap.didCollideWithEnvironment(
         this.x,
@@ -29,7 +59,9 @@ export default class Enemy {
         this.movingDirection
       )
     ) {
-      switch (this.movingDirection) {
+      switch (
+        this.movingDirection //same movement as pacman
+      ) {
         case MovingDirection.up:
           this.y -= this.velocity;
           break;
