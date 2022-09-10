@@ -1,11 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 
 #game {
   box-shadow: 10px 10px 14px black;
 }
+@keyframes blink {
+  1% {
+    font-weight: 200;
+  }
+}
 h1 {
-  
+  font-family: "Silkscreen";
   text-align: center;
+  outline: none;
+  animation: blink 1s linear infinite;
+  color: yellow;
 }
 /** turns the body into a flex box so the canvas always stays centered inside the screen */
 body {
@@ -13,7 +21,7 @@ body {
   justify-content: center;
   /** overflow prevents scrollbars from showing up */
   overflow: hidden;
-  background-image: url(./images/Atari.png.f58722480f4b3bb2bc1d0e2547a6d292.png);
+  background-image: url(./images/Arcade.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -25,4 +33,3 @@ body {
   
   height: 100vh;
 } */
- 

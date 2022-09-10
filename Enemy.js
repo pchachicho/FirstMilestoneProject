@@ -12,7 +12,7 @@ export default class Enemy {
       Math.random() * Object.keys(MovingDirection).length
     ); //random moving direction
 
-    this.directionTimerDefault = this.#random(1, 3);
+    this.directionTimerDefault = this.#random(1, 12);
     this.directionTimer = this.directionTimerDefault;
   }
   draw(ctx) {
