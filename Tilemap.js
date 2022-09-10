@@ -43,7 +43,7 @@ export default class TileMap {
       5, 1,
     ],
     [
-      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
       5, 1,
     ],
     [
@@ -67,7 +67,7 @@ export default class TileMap {
       5, 1,
     ],
     [
-      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
       5, 1,
     ],
     [
@@ -79,7 +79,7 @@ export default class TileMap {
       5, 1,
     ],
     [
-      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+      1, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
       5, 1,
     ],
     [
@@ -95,7 +95,7 @@ export default class TileMap {
       5, 1,
     ],
     [
-      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5, 5, 5, 5,
       5, 1,
     ],
     [
@@ -258,7 +258,7 @@ export default class TileMap {
     } // return false if we did not collide
     return false;
   }
-  eatDot(x, y) {
+  eatDot(x, y) { //this is not in use
     const row = y / this.tileSize;
     const column = x / this.tileSize;
     //makes sure theres no decimals

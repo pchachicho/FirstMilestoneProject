@@ -16,3 +16,4 @@ Tree credits: webgame part 7
 
 
 bugs: grass patches do not spawn on wolves spawn location
+what i can do better: increase some icons size, add a score that starts counting the survival time, little bit better css
