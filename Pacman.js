@@ -1,20 +1,17 @@
 import MovingDirection from "./MovingDirection.js";
 export default class Pacman {
-  constructor(x, y, tileSize, velocity, tileMap, bulletController) {
+  constructor(x, y, tileSize, velocity, tileMap,) {
     this.x = x;
     this.y = y;
     this.tileSize = tileSize;
     this.velocity = velocity;
     this.tileMap = tileMap;
-    this.bulletController = bulletController;
 
     this.currentMovingDirection = null;
     this.requestedMovingDirection = null;
 
     this.pacmanAnimationTimerDefault = 10;
     this.pacmanAnimationTimer = null;
-
-    this.powerDotActive = false;
    
     this.pacmanRotation = this.Rotation.right;
 
@@ -130,7 +127,7 @@ export default class Pacman {
       )
     ) {
       return;
-    } else if (
+    } else if ( //
       this.currentMovingDirection != null &&
       this.pacmanAnimationTimer == null
     ) {
@@ -139,7 +136,7 @@ export default class Pacman {
     // Depending on your direction "switch" will change pacmans x or y value
     switch (this.currentMovingDirection) {
       case MovingDirection.up:
-        this.y -= this.velocity;
+        this.y -= this.velocity; 
         this.pacmanRotation = this.Rotation.up;
         break;
       case MovingDirection.down:

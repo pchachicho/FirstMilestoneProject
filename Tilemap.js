@@ -11,9 +11,9 @@ export default class TileMap {
 
     this.wall = new Image();
     this.wall.src = "./images/tree.png";
-    
+
     this.grass = new Image();
-    this.grass.src = "./images/grass.webp"
+    this.grass.src = "./images/grass.webp";
   }
 
   // Bricks = 1
@@ -110,9 +110,14 @@ export default class TileMap {
       1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 5, 5,
       5, 1,
     ],
-    [ 1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1,
+    [
+      1, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+      5, 1,
     ],
-    [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,],
+    [
+      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      1, 1,
+    ],
   ];
   // Makes a for loop with conditions i.e if === 1 make a wall
   draw(ctx) {
@@ -122,23 +127,14 @@ export default class TileMap {
         if (tile === 1) {
           // # makes it a private method
           this.#drawWall(ctx, column, row, this.tileSize); //if tile is = 1 it becomes a brick!
-        } 
-        else if (tile === 0) {
+        } else if (tile === 0) {
           this.#drawYellowDot(ctx, column, row, this.tileSize); //if tile is = 0 then it turns into a yellow dot
         } else {
           this.#drawBlank(ctx, column, row, this.tileSize);
         }
-        if (tile === 5) {
-          this.#drawGrass(ctx,column,row,this.tileSize);
+        if (tile === 5) { //if tile is = 5 it becomes grass
+          this.#drawGrass(ctx, column, row, this.tileSize);
         }
-        //yellow outlines for image pixels
-        // ctx.strokeStyle = "yellow";
-        // ctx.strokeRect(
-        // column * this.tileSize,
-        // row * this.tileSize,
-        // this.tileSize,
-        // this.tileSize
-        // );
       }
     }
   }
@@ -146,9 +142,9 @@ export default class TileMap {
   #drawWall(ctx, column, row, size) {
     ctx.drawImage(
       this.wall,
-      column * this.tileSize,
+      column * this.tileSize, //multiplies row and column to make the grid
       row * this.tileSize,
-      size,
+      size, //the size means x and y
       size
     );
   }
@@ -176,13 +172,14 @@ export default class TileMap {
     ctx.fillStyle = "black";
     ctx.fillRect(column * this.tileSize, row * this.tileSize, size, size);
   }
+  // Math formula to get pacmans velocity 
   getPacman(velocity) {
     for (let row = 0; row < this.map.length; row++) {
       for (let column = 0; column < this.map[row].length; column++) {
         let tile = this.map[row][column];
-        if (tile === 4) {
+        if (tile === 4) {// 4 is pacmans id number
           this.map[row][column] = 0;
-          return new Pacman(
+          return new Pacman( // returns the actual playable pacman
             column * this.tileSize,
             row * this.tileSize,
             this.tileSize,
@@ -193,13 +190,14 @@ export default class TileMap {
       }
     }
   }
+  // enemies velocity same as pacman
   getEnemies(velocity) {
     const enemies = [];
     for (let row = 0; row < this.map.length; row++) {
       for (let column = 0; column < this.map[row].length; column++) {
         const tile = this.map[row][column];
         if (tile == 6) {
-          this.map[row][column] = 6;
+          this.map[row][column] = 6; // 6 is enemies id number
           enemies.push(
             new Enemy(
               column * this.tileSize,
@@ -231,26 +229,27 @@ export default class TileMap {
 
       switch (direction) {
         case MovingDirection.right:
-          nextColumn = x + this.tileSize;
+          nextColumn = x + this.tileSize; // right is + on the x axis 
           column = nextColumn / this.tileSize;
           row = y / this.tileSize;
           break;
         case MovingDirection.left:
-          nextColumn = x - this.tileSize;
+          nextColumn = x - this.tileSize; // left is - on the x axis
           column = nextColumn / this.tileSize;
           row = y / this.tileSize;
           break;
         case MovingDirection.down:
-          nextRow = y + this.tileSize;
+          nextRow = y + this.tileSize;// down is + on the y axis
           row = nextRow / this.tileSize;
           column = x / this.tileSize;
           break;
         case MovingDirection.up:
-          nextRow = y - this.tileSize;
+          nextRow = y - this.tileSize; //up is - on the y axis
           row = nextRow / this.tileSize;
           column = x / this.tileSize;
           break;
       }
+      //prevents not colliding with the walls
       const tile = this.map[row][column];
       if (tile === 1) {
         return true;
@@ -258,7 +257,8 @@ export default class TileMap {
     } // return false if we did not collide
     return false;
   }
-  eatDot(x, y) { //this is not in use
+  eatDot(x, y) {
+    //this is not in use
     const row = y / this.tileSize;
     const column = x / this.tileSize;
     //makes sure theres no decimals
