@@ -14,7 +14,7 @@ export default class Pacman {
     this.pacmanAnimationTimer = null;
 
     this.pacmanRotation = this.Rotation.right;
-    this.eatingSound = new Audio("./sounds2/sound/waka.wav");
+  
 
     document.addEventListener("keydown", this.#keydown);
     this.#loadPacmanImages();
@@ -112,7 +112,7 @@ export default class Pacman {
       ) {
         // ! askes the code a question if we collided or not
         if (
-          !this.tileMap.didCollideWithEnvironrment(
+          !this.tileMap.didCollideWithEnvironment(
             this.x,
             this.y,
             this.requestedMovingDirection
@@ -122,7 +122,7 @@ export default class Pacman {
       }
     }
     if (
-      this.tileMap.didCollideWithEnvironrment(
+      this.tileMap.didCollideWithEnvironment(
         this.x,
         this.y,
         this.currentMovingDirection
@@ -170,8 +170,6 @@ export default class Pacman {
   }
   #eatDot() {
     if (this.tileMap.eatDot(this.x, this.y)) {
-      //plays the sound
-      this.eatingSound.play();
     }
   }
 }
