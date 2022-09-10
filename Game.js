@@ -13,6 +13,7 @@ const gameOverSound = new Audio("sounds2/sounds/gameOver.wav");
 const tileMap = new TileMap(tileSize);
 const pacman = tileMap.getPacman(velocity); //creates pacman
 const enemies = tileMap.getEnemies(velocity); // gives enemies velocity
+
 function gameLoop() {
   // Game loop draws the screen multiple times depending on what i put
   tileMap.draw(ctx); // Draws the map
