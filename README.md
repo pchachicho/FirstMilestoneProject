@@ -1,19 +1,25 @@
 # FirstMilestoneProject
-first milestone project during cybersecurity bootcamp
+first milestone project during cybersecurity bootcamp.
 
-I am making a pacman shooter so far using inspiration from a youtube video to make the tile arena, movement and enemies
+this game uses javascript,HTML,CSS
+HTML is used to create the canvas id, The pacman title and link javascript and CSS files.
+
+CSS is used to animate the text, change its font, change its color, make the text and canvas center,
+
+Javascript is used to define how big the map is, pacman moving functions, collisions, inserting images for the map,audio,wolf ai, and causing a loose condition
+
+
+Directions: Survive as long as you can! use the up,down,left,right keys on your keyboard to move pacman. After 20 seconds the wolfs get restless!
+ Dont get hit or its game over!
 
 
 inspiration and also credits for images/sounds https://www.youtube.com/watch?v=Tk48dQCdQ3E&list=WL&index=20&t=291s
-
 Background image credits to peerspace: https://guides.peerspace.com/c/arcade-games-san-francisco-ca
-
-change game to RPG add enemys and point system
-
 wolf image credits: https://opengameart.org/content/lpc-wolf-animation
 grass image credits: https://bulbapedia.bulbagarden.net/wiki/File:HGSS_Grass.png
 Tree credits: webgame part 7
-
+wolf noises: http://www.wolfcountry.net/WolfSounds.html
+W3schools: for some code
 
 bugs: grass patches do not spawn on wolves spawn location
 what i can do better: increase some icons size, add a score that starts counting the survival time, little bit better css

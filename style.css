@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
-
-#game {
-  box-shadow: 10px 10px 14px black;
-}
+/* Causes the text to blink to a bigger size font */
 @keyframes blink {
   1% {
     font-weight: 200;
@@ -25,18 +22,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.screen {
-  color: #ffffff;
-  padding: 20px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -100px;
-  margin-left: -100px;
-  height: 200px;
-  width: 250px;
-  text-align: center;
-}
+
 canvas {
   background-color: black;
 }
