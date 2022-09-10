@@ -15,12 +15,34 @@ export default class Enemy {
     this.directionTimerDefault = this.#random(1, 12);
     this.directionTimer = this.directionTimerDefault;
   }
-  draw(ctx) {
+  draw(ctx, pause, pacman) {
     //draws the enemys
+    
     this.#move();
     this.#changeDirection();
+    
+    this.#setImage(pacman);
     ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize);
   }
+  #setImage(pacman) {
+    
+  }
+  //checks if pacman overlaps enemy tiles
+  collideWith(pacman) {
+    const size = this.tileSize / 2; // /2 means it detects if we are halfway over the tile
+    if (
+        // if pacman is greater then x or y it = true. if not it returns false
+      this.x < pacman.x + size && 
+      this.x + size > pacman.x &&
+      this.y < pacman.y + size &&
+      this.y + size > pacman.y
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   #changeDirection() {
     this.directionTimer--;
     let newMoveDirection = null;
@@ -32,7 +54,7 @@ export default class Enemy {
       );
     }
     if (newMoveDirection != null && this.movingDirection != newMoveDirection) {
-      if ( 
+      if (
         //same code as pacman. checking if numbers are not decimals
         Number.isInteger(this.x / this.tileSize) &&
         Number.isInteger(this.y / this.tileSize)

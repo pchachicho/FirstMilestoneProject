@@ -1,11 +1,12 @@
 import MovingDirection from "../src/MovingDirection.js";
 export default class Pacman {
-  constructor(x, y, tileSize, velocity, tileMap) {
+  constructor(x, y, tileSize, velocity, tileMap, bulletController) {
     this.x = x;
     this.y = y;
     this.tileSize = tileSize;
     this.velocity = velocity;
     this.tileMap = tileMap;
+    this.bulletController = bulletController;
 
     this.currentMovingDirection = null;
     this.requestedMovingDirection = null;
@@ -13,16 +14,19 @@ export default class Pacman {
     this.pacmanAnimationTimerDefault = 10;
     this.pacmanAnimationTimer = null;
 
+    this.powerDotActive = false;
+   
     this.pacmanRotation = this.Rotation.right;
-  
 
-    document.addEventListener("keydown", this.#keydown);
+    document.addEventListener("keydown", this.keydown);
     this.#loadPacmanImages();
   }
   //Draws the movement of images of pacman and animates them
-  draw(ctx) {
+  draw(ctx, pause) {
+    if(pause){
     this.#move();
     this.#animate();
+    }
     this.#eatDot();
     // What this code does is basically rotates the whole entire map which ends up in a glitch in the map. at the end "ctx.restore()" restores the canvas back
     // to normal but leaves pacman rotating everytime a key is pressed which ends up with the animation being complete.
@@ -46,7 +50,7 @@ export default class Pacman {
     //   this.tileSize
     // );
   }
-
+  
   Rotation = {
     right: 0,
     down: 1,
@@ -77,30 +81,34 @@ export default class Pacman {
     this.pacmanImageIndex = 0; //First image pacman starts as (fully closed)
   }
 
-  #keydown = (event) => {
+  keydown = (event) => {
     // Up key
     if (event.keyCode == 38) {
       if (this.currentMovingDirection == MovingDirection.down)
         this.currentMovingDirection = MovingDirection.up; //if your moving down your good to go up
       this.requestedMovingDirection = MovingDirection.up; //if you going anyother direction it checks to see if your able to move up
+      
     }
     // Down key
     if (event.keyCode == 40) {
       if (this.currentMovingDirection == MovingDirection.up)
         this.currentMovingDirection = MovingDirection.down;
       this.requestedMovingDirection = MovingDirection.down;
+      
     }
     // Left key
     if (event.keyCode == 37) {
       if (this.currentMovingDirection == MovingDirection.right)
         this.currentMovingDirection = MovingDirection.left;
       this.requestedMovingDirection = MovingDirection.left;
+      
     }
     // Right key
     if (event.keyCode == 39) {
       if (this.currentMovingDirection == MovingDirection.left)
         this.currentMovingDirection = MovingDirection.right;
       this.requestedMovingDirection = MovingDirection.right;
+      
     }
   };
   // this function basically does not allow you to switch in between decimal points and only when your exactly on the 32bit image

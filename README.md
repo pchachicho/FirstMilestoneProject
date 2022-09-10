@@ -11,3 +11,8 @@ Background image credits to peerspace: https://guides.peerspace.com/c/arcade-gam
 change game to RPG add enemys and point system
 
 wolf image credits: https://opengameart.org/content/lpc-wolf-animation
+grass image credits: https://bulbapedia.bulbagarden.net/wiki/File:HGSS_Grass.png
+Tree credits: webgame part 7
+
+
+bugs: grass patches do not spawn on wolves spawn location
