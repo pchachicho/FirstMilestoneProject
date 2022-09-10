@@ -5,6 +5,7 @@ const velocity = 2;
 
 const canvas = document.getElementById("game"); // Creates canvas and links it to the ID on html "game"
 const ctx = canvas.getContext("2d"); // References the context in 2d
+
 const tileMap = new TileMap(tileSize);
 const pacman = tileMap.getPacman(velocity); //creates pacman
 const enemies = tileMap.getEnemies(velocity);

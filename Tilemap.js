@@ -10,7 +10,10 @@ export default class TileMap {
     this.yellowDot.src = "./images/yellowDot.png";
 
     this.wall = new Image();
-    this.wall.src = "./images/wall.png";
+    this.wall.src = "./images/tree.png";
+    
+    this.grass = new Image();
+    this.grass.src = "./images/grass.webp"
   }
 
   // Bricks = 1
@@ -119,10 +122,14 @@ export default class TileMap {
         if (tile === 1) {
           // # makes it a private method
           this.#drawWall(ctx, column, row, this.tileSize); //if tile is = 1 it becomes a brick!
-        } else if (tile === 0) {
+        } 
+        else if (tile === 0) {
           this.#drawYellowDot(ctx, column, row, this.tileSize); //if tile is = 0 then it turns into a yellow dot
         } else {
           this.#drawBlank(ctx, column, row, this.tileSize);
+        }
+        if (tile === 5) {
+          this.#drawGrass(ctx,column,row,this.tileSize);
         }
         //yellow outlines for image pixels
         // ctx.strokeStyle = "yellow";
@@ -139,6 +146,15 @@ export default class TileMap {
   #drawWall(ctx, column, row, size) {
     ctx.drawImage(
       this.wall,
+      column * this.tileSize,
+      row * this.tileSize,
+      size,
+      size
+    );
+  }
+  #drawGrass(ctx, column, row, size) {
+    ctx.drawImage(
+      this.grass,
       column * this.tileSize,
       row * this.tileSize,
       size,

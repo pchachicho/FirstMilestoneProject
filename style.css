@@ -25,11 +25,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-/* .background {
-  background-image: url(./images/Atari.png.f58722480f4b3bb2bc1d0e2547a6d292.png);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
-  
-  height: 100vh;
-} */
+
+canvas {
+  background-color: green;
+}
