@@ -29,7 +29,7 @@ function checkGameOver() {
     if (gameOver) {
       gameOverSound.play();     
       document.getElementById("game").style.display = "none";
-      document.getElementById("h1").innerHTML = "You Lost!";
+      document.querySelector("h1").innerHTML = "You Lost!";
     }
   }
 }
